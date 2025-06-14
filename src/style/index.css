@@ -1,0 +1,3 @@
+/* style.css is a global css file that is included in every page. You must create css file for any compoent inside style folder only */
+
+@import "tailwindcss";
