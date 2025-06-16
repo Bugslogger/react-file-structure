@@ -8,7 +8,7 @@ const Header = ({ handleOpen }) => {
   return (
     <div className="header header-height flex justify-between items-center px-2 border-b border-b-gray-100 w-full">
       <div className="flex justify-start items-center gap-3">
-        <div>logo</div>
+        <div className="lg:hidden block">logo</div>
         <div className="lg:hidden block" onClick={handleOpen}>
           <RxHamburgerMenu fontSize={`${ICONS_SIZE + 6}px`} />
         </div>
