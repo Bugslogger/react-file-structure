@@ -1,3 +1,11 @@
 /* style.css is a global css file that is included in every page. You must create css file for any compoent inside style folder only */
 
 @import "tailwindcss";
+
+:root {
+  --drawer_width: 240px;
+  --header_height: 55px;
+  /* --drawer_height: 240px;
+  --drawer_height: 240px;
+  --drawer_height: 240px; */
+}

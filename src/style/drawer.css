@@ -1,0 +1,4 @@
+.drawer-width {
+  width: var(--drawer_width);
+  min-width: var(--drawer_width);
+}

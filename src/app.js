@@ -1,7 +1,10 @@
-import React from "react";
+import React, { memo, useEffect } from "react";
+import AppRouter from "./routes/app-router";
 
 const App = () => {
-  return <div className="text-2xl text-blue-600">Test</div>;
+  // const { handleValidation, setToken, getAllCookies } = useValidateUser();
+  useEffect(() => {});
+  return <AppRouter />;
 };
 
-export default App;
+export default memo(App);
