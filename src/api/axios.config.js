@@ -20,3 +20,9 @@ const interceptor = api.interceptors.request.use((config) => {
     // Let the browser set the correct boundary in multipart/form-data
   }
 });
+
+function handleRejectInterceptor() {
+  api.interceptors.request.eject(interceptor);
+}
+
+export default api;

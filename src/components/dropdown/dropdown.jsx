@@ -9,18 +9,7 @@ const Dropdown = ({
   className,
   isOverrideClass,
   callback,
-  options = [
-    {
-      label: "Account Settings",
-      value: "Account Settings",
-      isLink: false,
-      isDisabled: true,
-      id: 0,
-    },
-    { label: "Support", value: "Support", isLink: false, id: 1 },
-    { label: "License", value: "License", isLink: false, id: 2 },
-    { value: "Sign out", label: "Sign out", isLink: false, id: 3 },
-  ],
+  options = [],
   onChange,
 }) => {
   const [open, setopen] = useState(false);
@@ -77,7 +66,7 @@ const Dropdown = ({
                 : `${className} px-5 text-sm font-medium py-1 ring-1 ring-gray-100 rounded cursor-pointer`
             }
           >
-            {"Login" || buttonText}
+            {buttonText || "Login"}
           </button>
         )}
 
