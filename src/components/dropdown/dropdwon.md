@@ -39,8 +39,17 @@ const Dropdown = ({
     isLink: false,
     value: "account-settings",
     isDisabled: false,
+    url: "/",
+    id: "0",
 }
 ```
+
 Note: Dropdown also has a dual state `link` and `button`. If you want to display the option as a link, you can set `isLink` to `true` in the options array. If you want to display the option as a button, you can set `isLink` to `false` in the options array. If you don't pass the `isLink` property, it will be considered as `false` by default.
 
 `onChange`: This prop is used to pass a function that will be called when the dropdown option is selected. It's a function. Default value is `undefined`.
+
+`isDisabled`: This prop is used to check whether the dropdown option should be disabled or not. It's a boolean value. Default value is `false`. If you set it as true, the option will be disabled. If you don't pass the `isDisabled` property, it will be considered as `false` by default.
+
+`url`: This prop is used to pass the URL to be navigated when the dropdown option is selected. It's a string value. Default value is `undefined`. If you set it as a string, then dropdown option will be displayed as a link and will navigate to the provided URL when clicked. It will only work when `isLink` is set to `true` else it won't affect anything.
+
+`id`: This prop is used to pass the ID to be assigned to the dropdown option. It's a string/number value. Default value is `undefined`. If you set it as a string, then dropdown option will be displayed with the provided ID.

@@ -10,10 +10,16 @@ const Dropdown = ({
   isOverrideClass,
   callback,
   options = [
-    { label: "Account Settings", isLink: false },
-    { label: "Support", isLink: false },
-    { label: "License", isLink: false },
-    { label: "Sign out", isLink: false },
+    {
+      label: "Account Settings",
+      value: "Account Settings",
+      isLink: false,
+      isDisabled: true,
+      id: 0,
+    },
+    { label: "Support", value: "Support", isLink: false, id: 1 },
+    { label: "License", value: "License", isLink: false, id: 2 },
+    { value: "Sign out", label: "Sign out", isLink: false, id: 3 },
   ],
   onChange,
 }) => {
@@ -28,6 +34,15 @@ const Dropdown = ({
       }
     }
   }, [isImage]);
+
+  function handleClickList(value) {
+    const isDisabled = value?.isDisabled || false;
+    if (isDisabled) return;
+    setopen(!open);
+    if (typeof onChange === "function") {
+      onChange(value, index);
+    }
+  }
 
   return (
     <div className="cursor-pointer">
@@ -75,13 +90,34 @@ const Dropdown = ({
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
-          tabindex="-1"
+          tabIndex="-1"
         >
           <div class="py-1" role="none">
             {/* <!-- Active: "bg-gray-100 text-gray-900 outline-hidden", Not Active: "text-gray-700" --> */}
             {options.map((value, index) => {
+              if (
+                value.id === undefined ||
+                value.id === "" ||
+                value.id === null
+              ) {
+                console.warn("Each child in dropdown must have a uniqe id");
+              }
+              {
+                /* if (
+                typeof value.id !== "string" ||
+                typeof value.id !== "number" ||
+                typeof value.id !== undefined ||
+                typeof value.id !== null
+              ) {
+                throw new Error(
+                  "The value of `id` must be a string or a number."
+                );
+              } */
+              }
+
               return value?.isLink ? (
                 <Link
+                  key={value.value}
                   to={value.url}
                   className="block px-4 py-2 text-sm text-gray-700"
                 >
@@ -89,15 +125,15 @@ const Dropdown = ({
                 </Link>
               ) : (
                 <div
-                  onClick={() => {
-                    setopen(!open);
-                    if (typeof onChange === "function") {
-                      onChange(value, index);
-                    }
-                  }}
-                  className="hover:bg-gray-100 hover:text-gray-900 hover:outline-hidden block px-4 py-2 text-sm text-gray-700"
+                  key={value.value}
+                  onClick={() => handleClickList(value)}
+                  className={`block px-4 py-2 text-sm  ${
+                    value?.isDisabled
+                      ? "text-gray-200"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:outline-hidden"
+                  }`}
                   role="menuitem"
-                  tabindex="-1"
+                  tabIndex="-1"
                   id={value.id + "-" + index}
                 >
                   {value.label}
