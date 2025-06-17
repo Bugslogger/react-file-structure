@@ -20,7 +20,11 @@ const LayoutWrapper = ({ children }) => {
       <div className="h-full border-r-gray-100 border-r lg:block hidden">
         <Drawer />
       </div>
-      <ModelWrapper open={close} handleClose={handleClose}>
+      <ModelWrapper
+        className="lg:hidden block"
+        open={close}
+        handleClose={handleClose}
+      >
         <Drawer isMobile handleClose={handleClose} className="bg-white px-1" />
       </ModelWrapper>
       <div className="h-full w-full overflow-y-auto">

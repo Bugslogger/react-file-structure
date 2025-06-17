@@ -2,7 +2,7 @@ import React, { memo, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { animate } from "motion";
 
-const ModelWrapper = ({ children, open, handleClose }) => {
+const ModelWrapper = ({ children, open, handleClose, className }) => {
   useEffect(() => {
     animate(".model", { x: open ? 0 : -1000 });
   }, [open]);
@@ -13,7 +13,7 @@ const ModelWrapper = ({ children, open, handleClose }) => {
         // animate={{ x: 0, opacity: 1 }}
         exit={{ x: 100, opacity: 1 }}
         // transition={{ ease: "easeInOut", duration: 2 }}
-        className="relative z-10 model"
+        className={`relative z-10 model ${className}`}
         // aria-labelledby="dialog-title"
         role="dialog"
         // aria-modal="true"
