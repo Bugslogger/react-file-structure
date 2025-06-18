@@ -103,7 +103,7 @@ module.exports = {
     },
 
     plugins: [
-        new BundleAnalyzerPlugin({ analyzerMode: "disabled", openAnalyzer: false }),
+        new BundleAnalyzerPlugin({ analyzerMode: "static", openAnalyzer: false }),
         new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             title: "Web App",

@@ -15,7 +15,10 @@ const Drawer = ({ className, handleClose, isMobile }) => {
           className="py-2 flex justify-end items-center cursor-pointer px-1"
           onClick={handleClose}
         >
-          <IoMdClose fontSize={`${ICONS_SIZE}px`} className="text-red-600 font-semibold" />
+          <IoMdClose
+            fontSize={`${ICONS_SIZE}px`}
+            className="text-red-600 font-semibold"
+          />
         </div>
       ) : (
         <div className="h-20">place your logo here</div>

@@ -8,6 +8,17 @@ export const menuItems = [
     url: "/",
     isLink: false,
     icon: <MdDashboard fontSize={`${ICONS_SIZE}px`} />,
+    isImage: false,
+    image: "",
+    activeImage: "",
   },
-  { label: "About", url: "/about", isLink: true },
+  {
+    label: "Profile",
+    url: "/profile",
+    isLink: true,
+    isImage: true,
+    image: "https://freesvg.org/img/abstract-user-flat-3.png",
+    activeImage:
+      "https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg",
+  },
 ];
