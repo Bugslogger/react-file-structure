@@ -29,10 +29,7 @@ const Dashboard = React.lazy(() => import("../view/dashboard/dashboard"));
 const Login = React.lazy(() => import("../view/login/login"));
 const Profile = React.lazy(() => import("../view/profile/profile"));
 const RouterWithLayout = React.lazy(() => import("./RouterWithLayout"));
-// import Dashboard from "../view/dashboard/dashboard";
-// import Login from "../view/login/login";
-// import RouterWithLayout from "./RouterWithLayout";
-// import Profile from "../view/profile/profile";
+
 
 export const routeConfig = [
   {

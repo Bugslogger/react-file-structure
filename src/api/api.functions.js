@@ -3,7 +3,7 @@ import { LOGIN } from "./endpoints";
 
 export async function loginAPI(data) {
   try {
-    const response = await api.post(LOGIN, data);
+    const response = await api.post(LOGIN, data, { withCredentials: false });
     return {
       data: response.data,
       status: response.status,

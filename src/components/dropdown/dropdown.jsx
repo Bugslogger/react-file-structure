@@ -91,24 +91,15 @@ const Dropdown = ({
               ) {
                 console.warn("Each child in dropdown must have a uniqe id");
               }
-              {
-                /* if (
-                typeof value.id !== "string" ||
-                typeof value.id !== "number" ||
-                typeof value.id !== undefined ||
-                typeof value.id !== null
-              ) {
-                throw new Error(
-                  "The value of `id` must be a string or a number."
-                );
-              } */
-              }
-
-              return value?.isLink ? (
+              return value?.isLink && !value?.isDisabled ? (
                 <Link
                   key={value.value}
                   to={value.url}
-                  className="block px-4 py-2 text-sm text-gray-700"
+                  className={`block px-4 py-2 text-sm text-gray-700 ${
+                    value?.isDisabled
+                      ? "text-gray-200"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:outline-hidden"
+                  }`}
                 >
                   {value.label}
                 </Link>
@@ -118,7 +109,7 @@ const Dropdown = ({
                   onClick={() => handleClickList(value)}
                   className={`block px-4 py-2 text-sm  ${
                     value?.isDisabled
-                      ? "text-gray-200"
+                      ? "text-gray-300"
                       : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:outline-hidden"
                   }`}
                   role="menuitem"

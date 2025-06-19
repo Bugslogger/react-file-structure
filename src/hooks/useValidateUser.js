@@ -18,17 +18,24 @@ const useValidateUser = () => {
 
     const cookie = new Cookies(null, { path: path, sameSite: "strict" });
     const token = cookie.get(cookieName);
+    console.log("token: ", token);
 
     if (token) {
-      const decoded = jwtDecode(token);
-      const { exp } = decoded;
-      const currentDate = new Date();
-      const currentTimestamp = currentDate.getTime();
+      try {
+        const decoded = jwtDecode(token);
+        console.log(decoded);
 
-      if (exp * 1000 > currentTimestamp) {
-        return { user: decoded, token: token, isValid: true };
+        const { exp } = decoded;
+        const currentDate = new Date();
+        const currentTimestamp = currentDate.getTime();
+
+        if (exp * 1000 > currentTimestamp) {
+          return { user: decoded, token: token, isValid: true };
+        }
+        return { user: decoded, token: token, isValid: false };
+      } catch (error) {
+        return { user: null, token: token, isValid: false };
       }
-      return { user: decoded, token: token, isValid: false };
     }
     return { user: null, token: token, isValid: false };
   }

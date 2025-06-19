@@ -14,7 +14,22 @@ const Header = ({ handleOpen }) => {
           <RxHamburgerMenu fontSize={`${ICONS_SIZE + 6}px`} />
         </div>
       </div>
-      <Dropdown />
+      <Dropdown
+        options={[
+          {
+            label: "Account Settings",
+            isLink: true,
+            value: "account-settings",
+            isDisabled: true,
+            url: "/profile",
+            id: "0",
+          },
+        ]}
+        isImage
+        image={
+          "https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg"
+        }
+      />
     </div>
   );
 };
