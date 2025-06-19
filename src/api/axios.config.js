@@ -1,9 +1,9 @@
 import axios from "axios";
 import { BASE_URL } from "./endpoints";
 import Cookies from "universal-cookie";
-const cookie = new Cookies(null, { path: path, sameSite: "strict" });
+const cookie = new Cookies(null, { path: "/", sameSite: "strict" });
 
-const api = axios.create({ baseURL: BASE_URL });
+const api = axios.create({ baseURL: BASE_URL, timeout: 20000 });
 
 const interceptor = api.interceptors.request.use((config) => {
   const token = cookie.get("token");
@@ -19,10 +19,18 @@ const interceptor = api.interceptors.request.use((config) => {
   if (config.data instanceof FormData) {
     // Let the browser set the correct boundary in multipart/form-data
   }
+  return config;
 });
 
-function handleRejectInterceptor() {
+const responseInterceptor = api.interceptors.response.use((config) => {
+  console.log(config);
+
+  return config;
+});
+
+export function handleRejectInterceptor() {
   api.interceptors.request.eject(interceptor);
+  api.interceptors.response.eject(responseInterceptor);
 }
 
 export default api;

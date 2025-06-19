@@ -1,4 +1,5 @@
 import React from "react";
+import Test from "../test/Test";
 
 /**
  * useRoutes hook
@@ -48,6 +49,14 @@ export const routeConfig = [
     element: (
       <RouterWithLayout>
         <Profile />
+      </RouterWithLayout>
+    ),
+  },
+  {
+    path: "/test",
+    element: (
+      <RouterWithLayout>
+        <Test />
       </RouterWithLayout>
     ),
   },
