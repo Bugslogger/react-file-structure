@@ -73,7 +73,23 @@ const useValidateUser = () => {
     return cookie.getAll(); // returns all cookies
   }
 
-  return { handleValidation, setToken, getAllCookies };
+  function removeCookies({ path = "/", cookieName, callback }) {
+    const cookie = new Cookies(null, { path: path, sameSite: "strict" });
+    cookie.remove(cookieName || "token", { path: path });
+    if (typeof callback === "function") {
+      if (
+        !cookie.get(cookieName || "token") ||
+        cookie.get(cookieName || "token") === undefined
+      ) {
+        callback({ isRemoved: true }); // function will be called when cookie is removed
+      } else {
+        callback({ isRemoved: false });
+      }
+    }
+    // cookie.remove("token" || cookieName); // removes token cookie
+  }
+
+  return { handleValidation, setToken, getAllCookies, removeCookies };
 };
 
 export default useValidateUser;
