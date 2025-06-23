@@ -86,7 +86,6 @@ const useValidateUser = () => {
         callback({ isRemoved: false });
       }
     }
-    // cookie.remove("token" || cookieName); // removes token cookie
   }
 
   return { handleValidation, setToken, getAllCookies, removeCookies };
