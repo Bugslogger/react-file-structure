@@ -1,13 +1,14 @@
 import api from "./axios.config";
-import { LOGIN } from "./endpoints";
+import { API_ENDPOINTS } from "../utils/api.config";
 
 export async function loginAPI(data) {
   try {
-    const response = await api.post(LOGIN, data, { withCredentials: false });
+    const response = await api.post(API_ENDPOINTS.login, data, {
+      withCredentials: false,
+    });
     return {
       data: response.data,
       status: response.status,
-      error,
       isError: false,
     };
   } catch (error) {

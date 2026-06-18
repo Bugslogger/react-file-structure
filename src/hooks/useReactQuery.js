@@ -1,28 +1,21 @@
-import { REFRESH_INTERVAL, STALE_TIME } from "../utils/constant";
+import { useQuery } from "@tanstack/react-query";
+import { QUERY_CONFIG } from "../utils/app.config";
 
-const useReactQuery = () => {
-  if (typeof id !== "object") {
-    return { error: "id parameter must be an array.", isError: true };
+const useReactQuery = ({ id, queryFn, enabled = true } = {}) => {
+  if (!Array.isArray(id) || id.length === 0) {
+    return { error: "id parameter must be a non-empty array.", isError: true };
   }
 
   if (typeof queryFn !== "function") {
-    throw new Error({
-      error: "queryFn parameter must be a function.",
-      isError: true,
-    });
-  }
-
-  if (id.length === 0 || id == undefined || id == null) {
-    return { error: "Invalid parameter id is passed", isError: true };
+    return { error: "queryFn parameter must be a function.", isError: true };
   }
 
   const DATA = useQuery({
     queryKey: id,
     queryFn: queryFn,
-    // enabled: false,
-    staleTime: STALE_TIME,
-    refetchInterval: REFRESH_INTERVAL,
-    
+    enabled,
+    staleTime: QUERY_CONFIG.staleTime,
+    refetchInterval: QUERY_CONFIG.refetchInterval,
   });
 
   const {
@@ -55,6 +48,17 @@ const useReactQuery = () => {
       isLoading,
     };
   }
+
+  return {
+    data,
+    error,
+    isError,
+    isFetching,
+    isLoading,
+    isPending,
+    isSuccess,
+    refetch,
+  };
 };
 
 export default useReactQuery;

@@ -1,0 +1,80 @@
+.dashboard-shell {
+  background: var(--dashboard-bg);
+  color: var(--dashboard-text);
+}
+
+.dashboard-surface {
+  background: var(--dashboard-surface);
+  border: 1px solid var(--dashboard-border);
+  border-radius: var(--dashboard-radius-lg);
+  box-shadow: var(--dashboard-card-shadow);
+}
+
+.dashboard-surface-soft {
+  background: var(--dashboard-surface-soft);
+  border: 1px solid var(--dashboard-border);
+  border-radius: var(--dashboard-radius-lg);
+}
+
+.dashboard-sidebar {
+  width: var(--dashboard-sidebar-width);
+}
+
+.dashboard-topbar {
+  min-height: var(--dashboard-topbar-height);
+}
+
+.dashboard-muted {
+  color: var(--dashboard-muted);
+}
+
+.dashboard-primary {
+  color: var(--dashboard-primary);
+}
+
+.dashboard-active-item {
+  background: linear-gradient(90deg, #25272d 0%, #3a3d45 100%);
+  color: #ffffff;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.dashboard-progress-track {
+  background: rgba(148, 163, 184, 0.2);
+}
+
+.dashboard-progress-fill {
+  background: var(--dashboard-accent);
+}
+
+.dashboard-fs-24 {
+  font-size: var(--dashboard-font-24);
+}
+
+.dashboard-fs-16 {
+  font-size: var(--dashboard-font-16);
+}
+
+.dashboard-fs-14 {
+  font-size: var(--dashboard-font-14);
+}
+
+.dashboard-fs-12 {
+  font-size: var(--dashboard-font-12);
+}
+
+.dashboard-fw-600 {
+  font-weight: 600;
+}
+
+.dashboard-fw-700 {
+  font-weight: 700;
+}
+
+.dashboard-leading-tight {
+  line-height: 1.2;
+}
+
+.dashboard-leading-relaxed {
+  line-height: 1.6;
+}

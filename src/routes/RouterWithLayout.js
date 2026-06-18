@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import LayoutWrapper from "../components/wrappers/layoutWrapper";
@@ -11,4 +11,4 @@ RouterWithLayout.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-export default memo(RouterWithLayout);
+export default RouterWithLayout;

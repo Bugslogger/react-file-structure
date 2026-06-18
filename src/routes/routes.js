@@ -1,5 +1,6 @@
 import React from "react";
 import Test from "../test/Test";
+import AuthWrapper from "../components/wrappers/authWrapper";
 
 /**
  * useRoutes hook
@@ -35,26 +36,32 @@ export const routeConfig = [
   {
     path: "/",
     element: (
-      <RouterWithLayout>
-        <Dashboard />
-      </RouterWithLayout>
+      <AuthWrapper>
+        <RouterWithLayout>
+          <Dashboard />
+        </RouterWithLayout>
+      </AuthWrapper>
     ),
     // children: [{ path: "/", element: <></> }],
   },
   {
     path: "/profile",
     element: (
-      <RouterWithLayout>
-        <Profile />
-      </RouterWithLayout>
+      <AuthWrapper>
+        <RouterWithLayout>
+          <Profile />
+        </RouterWithLayout>
+      </AuthWrapper>
     ),
   },
   {
     path: "/test",
     element: (
-      <RouterWithLayout>
-        <Test />
-      </RouterWithLayout>
+      <AuthWrapper>
+        <RouterWithLayout>
+          <Test />
+        </RouterWithLayout>
+      </AuthWrapper>
     ),
   },
   {

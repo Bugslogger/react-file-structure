@@ -1,5 +1,6 @@
 import Cookies from "universal-cookie";
 import { jwtDecode } from "jwt-decode";
+import { AUTH_COOKIE_CONFIG } from "../utils/api.config";
 
 const useValidateUser = () => {
   /**
@@ -9,14 +10,20 @@ const useValidateUser = () => {
    * @returns {object}
    *
    */
-  function handleValidation({ cookieName = "token", path = "/" }) {
+  function handleValidation({
+    cookieName = AUTH_COOKIE_CONFIG.cookieName,
+    path = AUTH_COOKIE_CONFIG.path,
+  } = {}) {
     if (!cookieName) {
       throw new Error(
         "Cookie name is required. Pass cookieName as an argument to function handleValidation."
       );
     }
 
-    const cookie = new Cookies(null, { path: path, sameSite: "strict" });
+    const cookie = new Cookies(null, {
+      path: path,
+      sameSite: AUTH_COOKIE_CONFIG.sameSite,
+    });
     const token = cookie.get(cookieName);
     console.log("token: ", token);
 
@@ -47,8 +54,15 @@ const useValidateUser = () => {
    * @returns {void}
    *
    */
-  function setToken({ token, path = "/", cookieName }) {
-    const cookie = new Cookies(null, { path: path, sameSite: "strict" });
+  function setToken({
+    token,
+    path = AUTH_COOKIE_CONFIG.path,
+    cookieName = AUTH_COOKIE_CONFIG.cookieName,
+  } = {}) {
+    const cookie = new Cookies(null, {
+      path: path,
+      sameSite: AUTH_COOKIE_CONFIG.sameSite,
+    });
     if (!cookieName) {
       throw new Error(
         "Cookie name is required. Pass cookieName as an argument to function handleValidation."
@@ -68,19 +82,26 @@ const useValidateUser = () => {
    * @returns {void}
    *
    */
-  function getAllCookies({ path = "/" }) {
-    const cookie = new Cookies(null, { path: path, sameSite: "strict" });
+  function getAllCookies({ path = AUTH_COOKIE_CONFIG.path } = {}) {
+    const cookie = new Cookies(null, {
+      path: path,
+      sameSite: AUTH_COOKIE_CONFIG.sameSite,
+    });
     return cookie.getAll(); // returns all cookies
   }
 
-  function removeCookies({ path = "/", cookieName, callback }) {
-    const cookie = new Cookies(null, { path: path, sameSite: "strict" });
-    cookie.remove(cookieName || "token", { path: path });
+  function removeCookies({
+    path = AUTH_COOKIE_CONFIG.path,
+    cookieName = AUTH_COOKIE_CONFIG.cookieName,
+    callback,
+  } = {}) {
+    const cookie = new Cookies(null, {
+      path: path,
+      sameSite: AUTH_COOKIE_CONFIG.sameSite,
+    });
+    cookie.remove(cookieName, { path: path });
     if (typeof callback === "function") {
-      if (
-        !cookie.get(cookieName || "token") ||
-        cookie.get(cookieName || "token") === undefined
-      ) {
+      if (!cookie.get(cookieName) || cookie.get(cookieName) === undefined) {
         callback({ isRemoved: true }); // function will be called when cookie is removed
       } else {
         callback({ isRemoved: false });

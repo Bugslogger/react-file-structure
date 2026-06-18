@@ -18,13 +18,13 @@ const Dropdown = ({
     if (isImage) {
       if (!image) {
         throw new Error(
-          "isImage prop of Dropdown component is true, but image prop is undefined"
+          "isImage prop of Dropdown component is true, but image prop is undefined",
         );
       }
     }
   }, [isImage]);
 
-  function handleClickList(value) {
+  function handleClickList(value, index) {
     const isDisabled = value?.isDisabled || false;
     if (isDisabled) return;
     setopen(!open);
@@ -84,6 +84,7 @@ const Dropdown = ({
           <div class="py-1" role="none">
             {/* <!-- Active: "bg-gray-100 text-gray-900 outline-hidden", Not Active: "text-gray-700" --> */}
             {options.map((value, index) => {
+              const key = value.id || value.value || `${value.label}-${index}`;
               if (
                 value.id === undefined ||
                 value.id === "" ||
@@ -93,7 +94,7 @@ const Dropdown = ({
               }
               return value?.isLink && !value?.isDisabled ? (
                 <Link
-                  key={value.value}
+                  key={key}
                   to={value.url}
                   className={`block px-4 py-2 text-sm text-gray-700 ${
                     value?.isDisabled
@@ -105,8 +106,8 @@ const Dropdown = ({
                 </Link>
               ) : (
                 <div
-                  key={value.value}
-                  onClick={() => handleClickList(value)}
+                  key={key}
+                  onClick={() => handleClickList(value, index)}
                   className={`block px-4 py-2 text-sm  ${
                     value?.isDisabled
                       ? "text-gray-300"

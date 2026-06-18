@@ -1,16 +1,22 @@
 import axios from "axios";
-import { BASE_URL } from "./endpoints";
 import Cookies from "universal-cookie";
-const cookie = new Cookies(null, { path: "/", sameSite: "strict" });
+import { API_CONFIG, AUTH_COOKIE_CONFIG } from "../utils/api.config";
+const cookie = new Cookies(null, {
+  path: AUTH_COOKIE_CONFIG.path,
+  sameSite: AUTH_COOKIE_CONFIG.sameSite,
+});
 
-const api = axios.create({ baseURL: BASE_URL, timeout: 20000 });
+const api = axios.create({
+  baseURL: API_CONFIG.baseUrl,
+  timeout: API_CONFIG.timeout,
+});
 
 // default configuration
-api.defaults.withCredentials = true;
-api.defaults.headers.common["Content-Type"] = "application/json";
+api.defaults.withCredentials = API_CONFIG.withCredentials;
+api.defaults.headers.common["Content-Type"] = API_CONFIG.contentType;
 
 const interceptor = api.interceptors.request.use((config) => {
-  const token = cookie.get("token"); // you need to change cookie name according to what you have set while setting cookie to browser.
+  const token = cookie.get(AUTH_COOKIE_CONFIG.cookieName);
 
   // ✅ Modify request config before sending
   console.log("Outgoing Request:", config);

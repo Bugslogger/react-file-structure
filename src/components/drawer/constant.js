@@ -1,13 +1,13 @@
 import React from "react";
 import { MdDashboard } from "react-icons/md";
-import { ICONS_SIZE } from "../../utils/constant";
+import { UI_CONFIG } from "../../utils/app.config";
 
 export const menuItems = [
   {
     label: "Dashboard",
     url: "/",
     isLink: false,
-    icon: <MdDashboard fontSize={`${ICONS_SIZE}px`} />,
+    icon: <MdDashboard fontSize={`${UI_CONFIG.iconSize}px`} />,
     isImage: false,
     image: "",
     activeImage: "",
